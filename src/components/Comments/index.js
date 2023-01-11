@@ -1,31 +1,63 @@
 import {Component} from 'react'
 import {v4 as uuidv4} from 'uuid'
+import CommentItem from '../CommentItem'
 import './index.css'
-
-const initialContainerBackgroundClassNames = [
-  'amber',
-  'blue',
-  'orange',
-  'emerald',
-  'teal',
-  'red',
-  'light-blue',
-]
 
 // Write your code here
 
 class Comments extends Component {
+  state = {
+    CommentDetails: '',
+    inputValue: '',
+    textAreaValue: '',
+  }
+
+  onUpdateComment = () => {
+    const {inputValue, textAreaValue} = this.state
+    const newComment = {
+      id: uuidv4(),
+      inputValue,
+      textAreaValue,
+    }
+
+    this.setState(preState => ({
+      CommentDetails: [...preState.CommentDetails, newComment],
+    }))
+  }
+
+  onChangeInput = event => {
+    this.setState({inputValue: event.target.value})
+  }
+
+  onChangeTextArea = event => {
+    this.setState({textAreaValue: event.target.value})
+  }
+
   render() {
+    const {CommentDetails, inputValue, textAreaValue} = this.state
+
     return (
       <div className="main-div">
         <div className="main-sub-div">
+          <h1 className="Comments-heading">Comments</h1>
           <div className="sub-div">
             <div className="input-div">
-              <h1 className="Comments-heading">Comments</h1>
               <p>Say something about 4.0 Technologies</p>
-              <input type="text" />
-              <textarea type="text" />
-              <button className="button" type="button">
+              <input
+                value={inputValue}
+                onChange={this.onChangeInput}
+                type="text"
+              />
+              <textarea
+                value={textAreaValue}
+                onChange={this.onChangeTextArea}
+                type="text"
+              />
+              <button
+                onClick={this.onUpdateComment}
+                className="button"
+                type="button"
+              >
                 Add Comment
               </button>
             </div>
@@ -43,6 +75,11 @@ class Comments extends Component {
             <p>
               <span className="span-el">0</span> Comments
             </p>
+          </div>
+          <div>
+            {CommentDetails.map(eachComment => (
+              <CommentItem eachComment={eachComment} />
+            ))}
           </div>
         </div>
       </div>

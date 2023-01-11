@@ -5,12 +5,10 @@
   flex-direction: row;
   justify-content: center;
   align-items: center;
-  border: 2px solid red;
 }
 
 .main-sub-div {
   width: 70%;
-  border: 2px solid violet;
 }
 
 .input-div {
@@ -18,7 +16,7 @@
   flex-direction: column;
   justify-content: space-between;
   align-items: flex-start;
-  border: 2px solid rebeccapurple;
+
   width: 50%;
 }
 
@@ -27,11 +25,9 @@
   flex-direction: row;
   justify-content: space-between;
   width: 100%;
-  border: 2px solid green;
 }
 
 .Comments-heading {
-  border: 2px solid saddlebrown;
   margin-top: 0px;
 }
 
@@ -42,10 +38,6 @@
   width: 140px;
   border-width: 0px;
   border-radius: 5px;
-}
-
-.hr-div {
-  border: 2px solid yellow;
 }
 
 .span-el {
