@@ -19,14 +19,17 @@ class Comments extends Component {
     inputValue: '',
     textAreaValue: '',
     commentsCount: 0,
+    isLike: 0,
   }
 
-  onUpdateComment = () => {
+  onUpdateComment = event => {
+    event.preventDefault()
     const {inputValue, textAreaValue} = this.state
     const newComment = {
       id: uuidv4(),
       inputValue,
       textAreaValue,
+      isLike: 0,
     }
 
     this.setState(preState => ({
@@ -51,6 +54,7 @@ class Comments extends Component {
       inputValue,
       textAreaValue,
       commentsCount,
+      isLike,
     } = this.state
 
     return (
@@ -60,25 +64,23 @@ class Comments extends Component {
           <div className="sub-div">
             <div className="input-div">
               <p>Say something about 4.0 Technologies</p>
-              <input
-                placeholder="Your Name"
-                value={inputValue}
-                onChange={this.onChangeInput}
-                type="text"
-              />
-              <textarea
-                placeholder="Your Comment"
-                value={textAreaValue}
-                onChange={this.onChangeTextArea}
-                type="text"
-              />
-              <button
-                onClick={this.onUpdateComment}
-                className="button"
-                type="button"
-              >
-                Add Comment
-              </button>
+              <form className="form-div" onSubmit={this.onUpdateComment}>
+                <input
+                  placeholder="Your Name"
+                  value={inputValue}
+                  onChange={this.onChangeInput}
+                  type="text"
+                />
+                <textarea
+                  placeholder="Your Comment"
+                  value={textAreaValue}
+                  onChange={this.onChangeTextArea}
+                  type="text"
+                />
+                <button className="button" type="submit">
+                  Add Comment
+                </button>
+              </form>
             </div>
             <div className="">
               <img

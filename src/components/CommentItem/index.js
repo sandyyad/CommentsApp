@@ -4,13 +4,14 @@ import './index.css'
 
 const CommentItem = props => {
   const {eachComment} = props
-  const {inputValue, textAreaValue} = eachComment
+  const {inputValue, textAreaValue, isLike} = eachComment
   const firstWord = inputValue[0].toUpperCase()
 
   const firstImage =
     'https://assets.ccbp.in/frontend/react-js/comments-app/like-img.png'
   const secondImage =
     'https://assets.ccbp.in/frontend/react-js/comments-app/liked-img.png'
+
   return (
     <li className="list-div">
       <div className="sub-list-div">
@@ -21,10 +22,14 @@ const CommentItem = props => {
         </div>
       </div>
       <div className="like-delete-div">
-        <button type="button" className="like-button">
-          <img className="like-image" src={firstImage} />
-        </button>
-        <button type="button" className="like-button">
+        <div>
+          <img className="like-image" src={firstImage} alt="like" />
+          <button type="button" className="like-button">
+            Like
+          </button>
+        </div>
+
+        <button data-testid="delete" type="button" className="like-button">
           <img
             className="like-image"
             src="https://assets.ccbp.in/frontend/react-js/comments-app/delete-img.png"
